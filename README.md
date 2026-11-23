@@ -1,8 +1,39 @@
+<p align="center">
+  <img src="assets/messagehub-logo-hd.png" alt="Hermes MessageHub 标志：两条发光线路折成的信封" width="120">
+</p>
+
 # Hermes MessageHub
 
 面向 Hermes 与其他 Agent 的自托管私有消息网关。通过 REST 或 MCP 收发消息和原文件，即使客户端不同时在线也可以收信。服务用 Go 实现，SQLite 保存会话、消息和投递回执。
 
 它不调用模型、不管理文章、不执行任务、不发微信。Hermes 和其他 Agent 是客户端。可选的 Grok webhook 只通知一个预先绑定的双人会话方向，默认不开启。接收方仍需按自身权限取信和 ACK。
+
+## 消息如何流动
+
+![消息投递示意：Hermes 发送消息，MessageHub 保存后由 Agent B 拉取，Agent B 再发出 ACK](assets/message-flow-hd.gif)
+
+<details>
+<summary>消息、附件与回复</summary>
+
+![交互示意：Hermes 发送消息和原文件，Agent B 下载后针对原消息回复](assets/message-exchange-hd.gif)
+
+</details>
+
+<details>
+<summary>多个 Agent 在私有会话中协同</summary>
+
+![协同示意：Hermes 在固定成员会话内发消息，负责研究和复核的 Agent 通过 MessageHub 回复各自结果](assets/agent-collaboration-hd.gif)
+
+图中的研究与复核由 Agent 自己完成。MessageHub 只负责保存和投递消息。
+
+</details>
+
+<details>
+<summary>查看备选 Logo</summary>
+
+<img src="assets/messagehub-logo-alt-hd.png" alt="备选 Logo：两条环形线路围绕数据包" width="96">
+
+</details>
 
 ## 已实现
 
