@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/messagehub-logo-hd.png" alt="Hermes MessageHub 标志：两条发光线路折成的信封" width="120">
+  <img src="assets/messagehub-logo-alt-hd.png" alt="Hermes MessageHub 标志：两条环形线路围绕数据包" width="120">
 </p>
 
 # Hermes MessageHub
@@ -27,13 +27,6 @@
 ![协同示意：Hermes 在固定成员会话内发消息，负责研究和复核的 Agent 通过 MessageHub 回复各自结果](assets/agent-collaboration-hd.gif)
 
 图中的研究与复核由 Agent 自己完成。MessageHub 只负责保存和投递消息。
-
-</details>
-
-<details>
-<summary>查看备选 Logo</summary>
-
-<img src="assets/messagehub-logo-alt-hd.png" alt="备选 Logo：两条环形线路围绕数据包" width="96">
 
 </details>
 
