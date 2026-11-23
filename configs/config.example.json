@@ -1,0 +1,15 @@
+{
+  "listen": "127.0.0.1:8098",
+  "public_url": "https://messages.example.invalid",
+  "database": "/var/lib/messagehub/hub.db",
+  "message_retention": "720h",
+  "attachment_retention": "168h",
+  "max_message_bytes": 65536,
+  "max_attachment_bytes": 8388608,
+  "max_store_bytes": 1073741824,
+  "request_body_bytes": 1048576,
+  "request_timeout_seconds": 30,
+  "rate_limit_per_minute": 600,
+  "max_concurrent": 8,
+  "max_concurrent_waits": 64
+}

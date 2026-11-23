@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+cache=${MESSAGEHUB_BUILD_CACHE:?Set MESSAGEHUB_BUILD_CACHE to the prepared isolated module/build cache}
+if [[ "$cache" != /* || ! -d "$cache/gomod" || ! -d "$cache/gocache" || ! -d "$cache/evidence" ]]; then
+  printf '%s\n' 'Expected an absolute, prepared MESSAGEHUB_BUILD_CACHE directory' >&2
+  exit 2
+fi
+exec docker run --rm --network none --user 10001:10001 \
+  --read-only --cap-drop=ALL --security-opt=no-new-privileges \
+  --cpus=2 --memory=2g --pids-limit=256 \
+  --tmpfs /scratch:rw,exec,nosuid,nodev,size=512m,mode=1777 \
+  -v "$root:/src:${MESSAGEHUB_SOURCE_MODE:-ro}" -v "$cache/gomod:/gomod:ro" \
+  -v "$cache/gocache:/gocache:rw" -v "$cache/evidence:/out:rw" \
+  -w /src -e HOME=/scratch -e TMPDIR=/scratch -e GOPATH=/gocache/gopath \
+  -e GOMODCACHE=/gomod -e GOCACHE=/gocache/build -e GOTOOLCHAIN=local \
+  -e GOPROXY=off -e GOSUMDB=off -e 'GOFLAGS=-mod=readonly -buildvcs=false' -e CGO_ENABLED="${CGO_ENABLED:-1}" \
+  golang@sha256:6359592445455f2dbe2412bed411336035bc019a50017720d77454ffdd6d0f82 \
+  go "$@"

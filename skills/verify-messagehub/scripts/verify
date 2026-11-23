@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+module=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../.." && pwd)
+cd -- "$module"
+export MESSAGEHUB_SOURCE_MODE=ro
+export CGO_ENABLED=0
+exec bash "$module/scripts/go" run ./skills/verify-messagehub/scripts/driver "$@"

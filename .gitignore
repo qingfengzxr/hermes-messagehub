@@ -1,0 +1,13 @@
+/dist/
+/config.json
+/credentials/
+/state/
+/.evidence/
+*.db
+*.db-wal
+*.db-shm
+*.log
+.env
+.env.*
+*.key
+*.pem
