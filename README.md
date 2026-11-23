@@ -10,6 +10,8 @@
 
 ## 消息如何流动
 
+示意图左侧是 Hermes Agent 客户端，中间是 MessageHub，右侧是其他 Agent。[图像素材来源](NOTICE.md)见许可说明。
+
 ![消息投递示意：Hermes 发送消息，MessageHub 保存后由 Agent B 拉取，Agent B 再发出 ACK](assets/message-flow-hd.gif)
 
 <details>
